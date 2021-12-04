@@ -1,4 +1,4 @@
-defmodule Advent1 do
+defmodule Day01 do
   def read_depths(file_name) do
     file_name
     |> File.read!()
@@ -13,6 +13,6 @@ defmodule Advent1 do
   end
 end
 
-input = Advent1.read_depths("input/1.txt")
-IO.puts(Advent1.count_window_increases(input, 2))
-IO.puts(Advent1.count_window_increases(input, 4))
+input = Day01.read_depths("input/1.txt")
+IO.puts(Day01.count_window_increases(input, 2))
+IO.puts(Day01.count_window_increases(input, 4))

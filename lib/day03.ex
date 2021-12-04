@@ -1,4 +1,4 @@
-defmodule Advent3 do
+defmodule Day03 do
   def read_report(file_name) do
     file_name
     |> File.read!()
@@ -10,9 +10,7 @@ defmodule Advent3 do
   end
 
   def transpose(matrix) do
-    matrix
-    |> List.zip()
-    |> Enum.map(&Tuple.to_list/1)
+    Utils.transpose(matrix)
   end
 
   def bit_list_to_int(bits) do
@@ -75,6 +73,6 @@ defmodule Advent3 do
   end
 end
 
-input = Advent3.read_report("input/3.txt")
-input |> Advent3.power() |> IO.puts()
-input |> Advent3.life_support() |> IO.puts()
+input = Day03.read_report("input/3.txt")
+input |> Day03.power() |> IO.puts()
+input |> Day03.life_support() |> IO.puts()

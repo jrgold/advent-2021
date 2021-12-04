@@ -1,4 +1,4 @@
-defmodule Advent2 do
+defmodule Day02 do
   def read_commands(file_name) do
     file_name
     |> File.read!()
@@ -23,6 +23,6 @@ defmodule Advent2 do
   end
 end
 
-input = Advent2.read_commands("input/2.txt")
-input |> Advent2.sum_commands |> then(fn {x, y} -> x * y end) |> IO.puts
-input |> Advent2.aim_commands |> then(fn {_aim, x, y} -> x * y end) |> IO.puts
+input = Day02.read_commands("input/2.txt")
+input |> Day02.sum_commands |> then(fn {x, y} -> x * y end) |> IO.puts
+input |> Day02.aim_commands |> then(fn {_aim, x, y} -> x * y end) |> IO.puts
