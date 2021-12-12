@@ -30,6 +30,6 @@ defmodule Advent7 do
   end
 end
 
-input = Advent6.read_timers("input/7.txt")
+input = Advent7.read_positions("input/7.txt")
 input |> Advent7.optimal_linear_fuel() |> IO.puts()
 input |> Advent7.optimal_triangular_fuel() |> IO.puts()
