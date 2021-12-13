@@ -17,4 +17,13 @@ defmodule Utils do
       |> IO.puts()
     end)
   end
+
+  def print_sparse_grid(sparse_grid) do
+    {min_x, max_x} = sparse_grid |> Enum.map(fn {{x, _}, _} -> x end) |> Enum.min_max()
+    {min_y, max_y} = sparse_grid |> Enum.map(fn {{_, y}, _} -> y end) |> Enum.min_max()
+
+    (for x <- min_x..max_x, y <- min_y..max_y, do: {x, y})
+      |> Enum.reduce(sparse_grid, fn coord, grid -> Map.put_new(grid, coord, " ") end)
+      |> print_grid()
+  end
 end
