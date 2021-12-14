@@ -97,32 +97,32 @@ defmodule Advent14 do
   def populate_n_polymerizations(
     rules,
     {[main_char, follower_char], iterations} = char_with_follower_and_iterations,
-    quantities_by_iterations
+    n_polymerizations
   ) do
     if iterations == 0 do
       Map.put(
-        quantities_by_iterations,
+        n_polymerizations,
         char_with_follower_and_iterations,
         %{main_char => 1}
       )
     else
-      case Map.get(quantities_by_iterations, char_with_follower_and_iterations) do
+      case Map.get(n_polymerizations, char_with_follower_and_iterations) do
         nil ->
           new_middle_char = rules[{main_char, follower_char}]
           left_half = {[main_char, new_middle_char], iterations - 1}
           right_half = {[new_middle_char, follower_char], iterations - 1}
           # Calculate sub-polymerizations
-          quantities_by_iterations = populate_n_polymerizations(rules, left_half, quantities_by_iterations)
-          quantities_by_iterations = populate_n_polymerizations(rules, right_half, quantities_by_iterations)
+          n_polymerizations = populate_n_polymerizations(rules, left_half, n_polymerizations)
+          n_polymerizations = populate_n_polymerizations(rules, right_half, n_polymerizations)
           # Merge sub-polymerizations
           quantities = Map.merge(
-            quantities_by_iterations[left_half],
-            quantities_by_iterations[right_half],
+            n_polymerizations[left_half],
+            n_polymerizations[right_half],
             fn _, count1, count2 -> count1 + count2
           end)
-          Map.put(quantities_by_iterations, char_with_follower_and_iterations, quantities)
+          Map.put(n_polymerizations, char_with_follower_and_iterations, quantities)
         # Quantities for this pair with this many iterations have already been calculated
-        _ -> quantities_by_iterations
+        _ -> n_polymerizations
       end
     end
   end
