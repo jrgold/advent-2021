@@ -26,4 +26,17 @@ defmodule Utils do
       |> Enum.reduce(sparse_grid, fn coord, grid -> Map.put_new(grid, coord, " ") end)
       |> print_grid()
   end
+
+  def read_grid(string) do
+    string
+    |> String.split("\n")
+    |> Enum.with_index()
+    |> Enum.flat_map(fn {line, y} ->
+      String.graphemes(line)
+      |> Enum.with_index(fn energy, x ->
+        {{x, y}, String.to_integer(energy)}
+      end)
+    end)
+    |> Map.new()
+  end
 end
